@@ -1,6 +1,5 @@
 <?php
 
-/// app/Http/Controllers/AuthController.php
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -14,7 +13,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->route('posts.index');
+            return redirect()->route('home');  // Przekierowanie do strony głównej po udanym logowaniu
         }
 
         return back()->withErrors(['message' => 'Invalid credentials']);
@@ -34,6 +33,6 @@ class AuthController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        return redirect()->route('home');
+        return redirect()->route('home');  // Przekierowanie do strony głównej po udanej rejestracji
     }
 }
